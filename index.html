@@ -20,12 +20,12 @@
         </div>
         <div class="markers-list">
           <h2>Markers List</h2>
-          <ul>
-            <li>Museu do Amanhã</li>
-            <li>Museu de Arte do Rio</li>
-            <li>Museu de Arte Moderna</li>
-            <li>Museu Histórico Nacional</li>
-            <li>Museu Nacional de Belas Artes</li>
+
+          <!-- Knockout loop through title array inside viewModel() -->
+          <ul data-bind="foreach: title">
+
+            <!-- Knockout display each value inside a li span -->
+            <li data-bind="click: "><span data-bind="text: $data"></span></li>
           </ul>
         </div>
         <div class="search-box">
@@ -39,6 +39,9 @@
             <option value="mnba">Museu Nacional de Belas Artes</option>
           </select>
         </div>
+        <!-- Testing knockout bindings -->
+        <!-- <div>You've clicked <span data-bind='text: numberOfClicks'></span> times</div>
+        <button data-bind='click: registerClick'>Click</button> -->
       </aside>
 
       <!-- Element that contains the map -->

@@ -6,7 +6,7 @@ var markers = [];
 // function to create a map on div #map
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -22.8939768, lng: -43.1794345},
+    center: {lat: -22.8967084, lng: -43.1820523},
     zoom: 13
   });
 
@@ -88,3 +88,22 @@ function hideMarkers() {
     markers[i].setMap(null);
   }
 }
+
+var viewModel = function() {
+  var self = this;
+
+  // Markers titles array
+  this.title = ko.observableArray(['Museu de Arte do Rio', 'Museu de Arte Moderna', 'Museu do Amanhã', 'Museu Histórico Nacional', 'Museu Nacional de Belas Artes']);
+};
+
+// Testing knockout bindings
+// var ClickCounterViewModel = function() {
+//   this.numberOfClicks = ko.observable(0);
+//
+//   this.registerClick = function() {
+//     this.numberOfClicks(this.numberOfClicks() + 1);
+//   };
+// };
+
+// ko.applyBindings(new ClickCounterViewModel());
+ko.applyBindings(new viewModel());
