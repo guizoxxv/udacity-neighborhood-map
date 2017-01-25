@@ -1,8 +1,93 @@
-html, body {
+html, body, .container {
+  width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: monospace;
+  font-size: 16px;
+}
+.flex-center {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  min-width: 768px;
+}
+aside {
+  width: 100%;
+  background: black;
+  color: white;
+  text-align: center;
+}
+aside * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  font-size: 25px;
+  margin: 20px 0 !important;
+}
+h2 {
+  font-size: 20px;
+  text-decoration: underline;
+  margin: 15px 0 !important;
+}
+button {
+  padding: 5px;
+  transition: 0.3s;
+}
+button:hover {
+  cursor: pointer;
+  background: gray;
+  transition: 0.3s;
+}
+#show-markers {
+  margin-right: 10px;
+}
+.markers-list {
+  width: 100%;
+  margin: 20px 0 !important;
+  padding: 0 5px !important;
+}
+.markers-list ul {
+  list-style: none;
+}
+.markers-list li {
+  border: 1px solid white;
+  margin: 10px 0;
+  padding: 5px;
+  transition: 0.3s;
+}
+.markers-list li:hover {
+  background: gray;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.search-box {
+  width: 100%;
+  margin: 20px 0 !important;
+  padding: 0 5px;
+}
+select {
+  width: 100%;
+  padding: 5px !important;
 }
 #map {
+  width: 100%;
   height: 100%;
+  box-sizing: border-box;
+  border: 5px solid gray;
+}
+
+@media screen and (min-width:768px) {
+  aside {
+    width: 30%;
+    height: 100%;
+  }
+  #map {
+    width: 70%;
+  }
 }
