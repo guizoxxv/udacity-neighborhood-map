@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guizo`s Neighborhood Map</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+
+    <!-- Element that contains the map -->
+    <div id="map"></div>
+
+    <!-- Load jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Load Knockout -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js" integrity="sha256-PX9zWVaICUCeklczWaS9DLBb9uGN7pCkCT0Kyz1elRo=" crossorigin="anonymous"></script>
+
+    <script>
+      var map;
+      
+      // function to create a map on div #map
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 40.7413549, lng: -73.9980244},
+          zoom: 13
+        });
+        var tribeca = {lat: 40.719526, lng: -74.0089934};
+        var marker = new google.maps.Marker({
+          position: tribeca,
+          map: map, // refers to variable map
+          title: 'Tribeca',
+          animation: google.maps.Animation.DROP
+        });
+        var infowindow = new google.maps.InfoWindow({
+          content: 'Testing'
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+    </script>
+
+    <!-- Load Google Maps Javascript API -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2nYdSNR2q_82_LhqScoVS5o8GlGFEC9o&v=3&callback=initMap"></script>
+
+    <script src="js/script.js"></script>
+
+  </body>
+</html>
