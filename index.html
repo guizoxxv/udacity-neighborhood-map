@@ -14,34 +14,26 @@
 
       <aside>
         <h1>Downtown Rio Museums</h1>
-        <div class="show-hide-buttons">
-          <button id="show-markers">Show Markers</button>
-          <button id="hide-markers">Hide Markers</button>
-        </div>
         <div class="markers-list">
           <h2>Markers List</h2>
 
-          <!-- Knockout loop through title array inside viewModel() -->
-          <ul data-bind="foreach: title">
+          <!-- Knockout loop through markersArray -->
+          <ul data-bind="foreach: markersArray">
 
-            <!-- Knockout display each value inside a li span -->
-            <li data-bind="click: "><span data-bind="text: $data"></span></li>
+            <!-- Knockout display title from each marker -->
+            <li data-bind="text: title, click: animate"></li>
           </ul>
         </div>
         <div class="search-box">
           <h2>Search</h2>
-          <select>
-            <option value="" selected></option>
-            <option value="ma">Museu do Amanhã</option>
-            <option value="mar">Museu de Arte do Rio</option>
-            <option value="mam">Museu de Arte Moderna</option>
-            <option value="mhn">Museu Histórico Nacional</option>
-            <option value="mnba">Museu Nacional de Belas Artes</option>
+
+          <!-- Knockout loop through markersArray -->
+          <select class="markers-select" data-bind="foreach: markersArray">
+
+            <!-- Knockout display title from each marker -->
+            <option data-bind="text: title"></option>
           </select>
         </div>
-        <!-- Testing knockout bindings -->
-        <!-- <div>You've clicked <span data-bind='text: numberOfClicks'></span> times</div>
-        <button data-bind='click: registerClick'>Click</button> -->
       </aside>
 
       <!-- Element that contains the map -->
@@ -60,8 +52,6 @@
 
     <!-- Load Google Maps Javascript API -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2nYdSNR2q_82_LhqScoVS5o8GlGFEC9o&v=3&callback=initMap"></script>
-
-
 
   </body>
 </html>
