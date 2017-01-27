@@ -80,7 +80,7 @@ function markerObj(data) {
     // Google Maps API info window content
     self.infoWindowContent = '<div><strong>' + data.title + '</strong></div>' +
                              '<div>' + self.address + '</div>' +
-                             '<div><a href="#">' + self.url + '</a></div>';
+                             '<div><a href="' + self.url + '" target="_blank">' + self.url + '</a></div>';
 
     // Set infoWindowContent as above content
     self.infoWindow.setContent(self.infoWindowContent);
@@ -99,7 +99,7 @@ function markerObj(data) {
 
   // Click event listener on .markers-list li
   this.listClick = function(data) {
-    google.maps.event.trigger(self.marker, 'click');
+    google.maps.event.trigger(this.marker, 'click');
   };
 }
 
@@ -114,11 +114,51 @@ function viewModel() {
   markersDataArray.forEach(function(data) {
     self.markersArray.push(new markerObj(data));
   });
+
+  // Visible markers objects array
+  this.visibleMarkersArray = ko.observableArray([]);
+
+  // Loop to fill above array using push() method
+  this.markersArray().forEach(function(data) {
+    self.visibleMarkersArray.push(data);
+  });
+
+  // Declare variable userInput
+  this.userInput = ko.observable('');
+
+  // Function to filter markers based on user input
+  this.filter = function() {
+
+    // Declare input variable with lowercase user input string
+    var input = self.userInput().toLowerCase();
+    // console.log(input);
+
+    // Remove data from visibleMarkersArray at first
+    self.visibleMarkersArray.removeAll();
+
+    // Loop throgh markersArray
+    self.markersArray().forEach(function(data) {
+      // console.log(data.title());
+      // console.log(data.title().toLowerCase().includes(input));
+
+      // Compare titles with user input
+      if(data.title().toLowerCase().includes(input) === true) {
+
+        // Add match to visibleMarkersArray
+        self.visibleMarkersArray.push(data);
+      } else {
+
+        // Set marker to not visible
+        data.marker.setVisible(false);
+      }
+    });
+
+    // Loop throgh visibleMarkersArray
+    self.visibleMarkersArray().forEach(function(data) {
+
+      // Set marker to visible
+      data.marker.setVisible(true);
+    });
+  };
+
 }
-
-/***** JQUERY *****/
-$(document).ready(function() {
-
-  // Make the value on .markers-select to empty on page load
-  $('.markers-select').val('');
-});

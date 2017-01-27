@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guizo`s Neighborhood Map</title>
+    <meta name="description" content="Downtown Rio Museums">
+		<meta name="author" content="Guizo">
+    <title>Downtown Rio Museums</title>
 
     <!-- Load CSS custom file -->
     <link rel="stylesheet" href="css/style.css">
@@ -12,23 +14,19 @@
 
     <div class="container flex-center">
 
+      <!-- Side bar -->
       <aside>
         <h1>Downtown Rio Museums</h1>
         <div class="search-box">
           <h2>Search</h2>
-
-          <!-- Knockout loop through markersArray -->
-          <select class="markers-select" data-bind="foreach: markersArray">
-
-            <!-- Knockout display title from each marker -->
-            <option data-bind="text: title"></option>
-          </select>
+          <!-- Knockout bind <input> with function filter on keyup event -->
+          <input type="text" placeholder="Filter" data-bind="textInput: userInput, event: {keyup: filter}">
         </div>
         <div class="markers-list">
           <h2>Markers List</h2>
 
           <!-- Knockout loop through markersArray -->
-          <ul data-bind="foreach: markersArray">
+          <ul data-bind="foreach: visibleMarkersArray">
 
             <!-- Knockout display title from each marker && Run listClick function on click -->
             <li data-bind="text: title, click: listClick"></li>

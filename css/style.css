@@ -72,7 +72,7 @@ button:hover {
   margin: 20px 0 !important;
   padding: 0 5px;
 }
-select {
+input {
   width: 100%;
   padding: 5px !important;
 }
