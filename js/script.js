@@ -46,13 +46,10 @@ function markerObj(data) {
     animation: google.maps.Animation.DROP
   });
 
-  // Display marker on map
-  this.marker.setMap(map);
-
   // Variable with string URL parameters client_id, client_secret, v. v is a date [YYYYMMDD]
   var urlEnd = '?client_id=ZVNQAZSRDX5KKD4MMK1Z2GWGIXWN5EKAAQHFVQWDNDALL3Q3&client_secret=IT34CTIXJ4GJB0BXQIS4VT1IODEV4CKK5NVKOZMHXCP2OXRY&v=20170126';
 
-  // AJAX request to FOURSQUARE using jQuery
+  // AJAX request to Foursquare API using jQuery
   $.ajax({
     url: 'https://api.foursquare.com/v2/venues/' + data.id + urlEnd,
       dataType: "json",
@@ -64,6 +61,7 @@ function markerObj(data) {
 
         // Set desired data into variables
     		self.url = results.url;
+        // console.log(results.location.formattedAddress);
     		self.address = results.location.formattedAddress[0] + ' - ' + results.location.formattedAddress[1]; // formattedAddress[0] is street and [2] city, state
       },
       error: function() { // If request fails
@@ -78,7 +76,7 @@ function markerObj(data) {
   this.marker.addListener('click', function() {
 
     // Google Maps API info window content
-    self.infoWindowContent = '<div><strong>' + data.title + '</strong></div>' +
+    self.infoWindowContent = '<div style="text-align: center;"><strong>' + data.title + '</strong></div>' +
                              '<div>' + self.address + '</div>' +
                              '<div><a href="' + self.url + '" target="_blank">' + self.url + '</a></div>';
 
@@ -114,6 +112,21 @@ function viewModel() {
   markersDataArray.forEach(function(data) {
     self.markersArray.push(new markerObj(data));
   });
+
+  // Instantiate Google Maps LatLngBounds object - Boundaries of the map
+  var bounds = new google.maps.LatLngBounds();
+
+  this.markersArray().forEach(function(data) {
+
+    // Display marker on map
+    data.marker.setMap(map);
+
+    // Extend boundaries for each marker on loop
+    bounds.extend(data.marker.position);
+  });
+
+  // Make the map fit into boundaries
+  map.fitBounds(bounds);
 
   // Visible markers objects array
   this.visibleMarkersArray = ko.observableArray([]);
