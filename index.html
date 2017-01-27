@@ -14,16 +14,6 @@
 
       <aside>
         <h1>Downtown Rio Museums</h1>
-        <div class="markers-list">
-          <h2>Markers List</h2>
-
-          <!-- Knockout loop through markersArray -->
-          <ul data-bind="foreach: markersArray">
-
-            <!-- Knockout display title from each marker -->
-            <li data-bind="text: title, click: animate"></li>
-          </ul>
-        </div>
         <div class="search-box">
           <h2>Search</h2>
 
@@ -33,6 +23,16 @@
             <!-- Knockout display title from each marker -->
             <option data-bind="text: title"></option>
           </select>
+        </div>
+        <div class="markers-list">
+          <h2>Markers List</h2>
+
+          <!-- Knockout loop through markersArray -->
+          <ul data-bind="foreach: markersArray">
+
+            <!-- Knockout display title from each marker && Run listClick function on click -->
+            <li data-bind="text: title, click: listClick"></li>
+          </ul>
         </div>
       </aside>
 
@@ -51,7 +51,7 @@
     <script src="js/script.js"></script>
 
     <!-- Load Google Maps Javascript API -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2nYdSNR2q_82_LhqScoVS5o8GlGFEC9o&v=3&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2nYdSNR2q_82_LhqScoVS5o8GlGFEC9o&v=3&callback=initMap" onerror="googleAPIError()"></script> <!-- Run function on callback to initiate map and onerror in case of error -->
 
   </body>
 </html>

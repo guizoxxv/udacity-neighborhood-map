@@ -20,6 +20,7 @@ aside {
   background: black;
   color: white;
   text-align: center;
+  overflow-y: auto;
 }
 aside * {
   box-sizing: border-box;
