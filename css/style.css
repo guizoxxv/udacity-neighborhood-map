@@ -109,3 +109,9 @@ button:hover {
   transition: 0.3s;
   cursor: pointer;
 }
+
+@media screen and (max-width: 425px) {
+  aside {
+    zoom: 0.8;
+  }
+}
