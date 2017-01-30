@@ -13,17 +13,13 @@ $(document).ready(function() {
       $('.menu-toggler').attr('title', 'Hide Menu');
     }
 
-    // Check if .map-wrapper width equal to its parent .container. As computed width is in px, I was unable to use if($('.map-wrapper').css('width' === '70%')) { ... }
-    if($('.map-wrapper').width() !== $('.container').width()) {
+    // Toogle .map-wrapper width = 100%
+    $('.map-wrapper').toggleClass('full-width');
 
-      // Toogle .map-wrapper width = 100%
-      $('.map-wrapper').toggleClass('full-width');
-
-      // Resize Map
-      var center = map.getCenter();
-      google.maps.event.trigger(map, 'resize');
-      map.setCenter(center);
-    }
+    // Resize Map
+    var center = map.getCenter();
+    google.maps.event.trigger(map, 'resize');
+    map.setCenter(center);
   });
 });
 
@@ -51,8 +47,8 @@ function initMap() {
   // Instantiate Google Maps InfoWindow object
   infoWindow = new google.maps.InfoWindow();
 
-  // Apply Knockout bindings on viewModel
-  ko.applyBindings(new viewModel());
+  // Apply Knockout bindings on ViewModel
+  ko.applyBindings(new ViewModel());
 }
 
 // Function if error with Google API
@@ -61,7 +57,7 @@ function googleAPIError() {
 }
 
 // Marker object function
-function markerObj(data) {
+function MarkerObj(data) {
   var self = this;
 
   this.title = data.title;
@@ -70,8 +66,8 @@ function markerObj(data) {
   this.id = data.id;
 
   // Foursquare API variables
-  this.address = ko.observable('');
-  this.url = ko.observable('');
+  this.address = '';
+  this.url = '';
 
   // Instantiate Google Maps Marker object
   this.marker = new google.maps.Marker({
@@ -128,13 +124,13 @@ function markerObj(data) {
   });
 
   // Click event listener on .markers-list li
-  markerObj.prototype.listClick = function() {
+  MarkerObj.prototype.listClick = function() {
     google.maps.event.trigger(this.marker, 'click');
   };
 }
 
 // View Model
-function viewModel() {
+function ViewModel() {
   var self = this;
 
   // Markers objects array
@@ -142,7 +138,7 @@ function viewModel() {
 
   // Loop to fill above array using push() method
   markersDataArray.forEach(function(data) {
-    self.markersArray.push(new markerObj(data));
+    self.markersArray.push(new MarkerObj(data));
   });
 
   // Instantiate Google Maps LatLngBounds object - Boundaries of the map
@@ -158,7 +154,12 @@ function viewModel() {
   });
 
   // Make the map fit into boundaries
-  map.fitBounds(bounds);
+  map.fitBounds(bounds); // `bounds` is a `LatLngBounds` object
+
+  // Fit map on window resize
+  google.maps.event.addDomListener(window, 'resize', function() {
+    map.fitBounds(bounds); // `bounds` is a `LatLngBounds` object
+  });
 
   // Visible markers objects array
   this.visibleMarkersArray = ko.observableArray([]);

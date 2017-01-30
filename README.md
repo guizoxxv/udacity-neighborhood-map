@@ -1,8 +1,8 @@
 # Udacity Neighborhood Map
 
-This is a project from Udacity's Nanodegree program "Front-End Web Developer". The goal of this project is to develop a single page application featuring a map of your neighborhood or a neighborhood you would like to visit. You will then add functionality to this map including highlighted locations, third-party data about those locations and various ways to browse the content.
+This is a project from Udacity's Nanodegree program [Front-End Web Developer](https://udacity.com/course/front-end-web-developer-nanodegree--nd001/). The goal of this project is to develop a single page application featuring a map of your neighborhood or a neighborhood you would like to visit. You will then add functionality to this map including highlighted locations, third-party data about those locations and various ways to browse the content.
 
-The application uses [Google Maps API](https://developers.google.com/maps/) to build the map, [Foursquare API](https://developer.foursquare.com/) to provide information about the venue and [Knockout Framework](http://knockoutjs.com/) to provide a [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) pattern and handle information on the page that is subject to changing state.
+The application uses [Google Maps API](https://developers.google.com/maps/) to build the map, [Foursquare API](https://developer.foursquare.com/) to provide information about the venue and [Knockout](http://knockoutjs.com/) framework to provide a [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) pattern and handle information on the page subject to changing state.
 
 ## Run
 

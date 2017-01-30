@@ -16,7 +16,7 @@ html, body, .container {
   width: 100% !important;
 }
 .map-wrapper {
-  width: 100%;
+  width: 70%;
   height: 100%;
   box-sizing: border-box;
   border: 5px solid gray;
@@ -41,7 +41,8 @@ html, body, .container {
   height: 100%;
 }
 aside {
-  width: 100%;
+  height: 100%;
+  width: 30%;
   background: black;
   color: white;
   text-align: center;
@@ -107,14 +108,4 @@ button:hover {
   background: gray;
   transition: 0.3s;
   cursor: pointer;
-}
-
-@media screen and (min-width:768px) {
-  aside {
-    width: 30%;
-    height: 100%;
-  }
-  .map-wrapper {
-    width: 70%;
-  }
 }
