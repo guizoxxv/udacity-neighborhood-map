@@ -28,6 +28,7 @@ $(document).ready(function() {
 });
 
 var map; // Important to declare - http://stackoverflow.com/questions/1470488/what-is-the-purpose-of-the-var-keyword-and-when-to-use-it-or-omit-it
+var infoWindow;
 
 // Markers data array
 var markersDataArray = [
@@ -46,6 +47,9 @@ function initMap() {
     center: {lat: -22.8967084, lng: -43.1820523},
     zoom: 14
   });
+
+  // Instantiate Google Maps InfoWindow object
+  infoWindow = new google.maps.InfoWindow();
 
   // Apply Knockout bindings on viewModel
   ko.applyBindings(new viewModel());
@@ -100,9 +104,6 @@ function markerObj(data) {
       }
   });
 
-  // Instantiate Google Maps InfoWindow object
-  this.infoWindow = new google.maps.InfoWindow();
-
   // Click event handler if marker is clicked
   this.marker.addListener('click', function() {
 
@@ -112,10 +113,10 @@ function markerObj(data) {
                              '<div><a href="' + self.url + '" target="_blank">' + self.url + '</a></div>';
 
     // Set infoWindowContent as above content
-    self.infoWindow.setContent(self.infoWindowContent);
+    infoWindow.setContent(self.infoWindowContent);
 
     // Open corresponding infoWindow
-    self.infoWindow.open(map, this);
+    infoWindow.open(map, this);
 
     // Animate clicked marker
     self.marker.setAnimation(google.maps.Animation.BOUNCE);
@@ -127,7 +128,7 @@ function markerObj(data) {
   });
 
   // Click event listener on .markers-list li
-  this.listClick = function(data) {
+  markerObj.prototype.listClick = function() {
     google.maps.event.trigger(this.marker, 'click');
   };
 }
@@ -173,6 +174,9 @@ function viewModel() {
   // Function to filter markers based on user input
   this.filter = function() {
 
+    // Close infoWindow when using filter
+    infoWindow.close();
+
     // Declare input variable with lowercase user input string
     var input = self.userInput().toLowerCase();
     // console.log(input);
@@ -188,20 +192,16 @@ function viewModel() {
       // Compare titles with user input
       if(data.title.toLowerCase().includes(input) === true) {
 
-        // Add match to visibleMarkersArray
+        // Set marker to visible
+        data.marker.setVisible(true);
+
+        // Add marker to visibleMarkersArray
         self.visibleMarkersArray.push(data);
       } else {
 
         // Set marker to not visible
         data.marker.setVisible(false);
       }
-    });
-
-    // Loop throgh visibleMarkersArray
-    self.visibleMarkersArray().forEach(function(data) {
-
-      // Set marker to visible
-      data.marker.setVisible(true);
     });
   };
 
