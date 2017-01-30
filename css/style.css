@@ -12,14 +12,33 @@ html, body, .container {
   align-items: center;
   justify-content: center;
 }
-.container {
-  min-width: 768px;
+.full-width {
+  width: 100% !important;
 }
-#map {
+.map-wrapper {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
   border: 5px solid gray;
+  position: relative;
+}
+.menu-toggler {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  padding: 5px;
+  z-index: 99;
+  color: gray;
+  transition: 0.3s;
+}
+.menu-toggler:hover {
+  color: black;
+  transition: 0.3s;
+  cursor: pointer;
+}
+#map {
+  width: 100%;
+  height: 100%;
 }
 aside {
   width: 100%;
@@ -32,6 +51,25 @@ aside * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+aside a {
+  text-decoration: none;
+  color: inherit;
+}
+.media i {
+  transition: 0.3s;
+}
+.media i:hover {
+  color: gray;
+}
+.search-box {
+  width: 100%;
+  margin: 20px 0 !important;
+  padding: 0 5px;
+}
+input {
+  width: 100%;
+  padding: 5px !important;
 }
 h1 {
   font-size: 25px;
@@ -50,9 +88,6 @@ button:hover {
   cursor: pointer;
   background: gray;
   transition: 0.3s;
-}
-#show-markers {
-  margin-right: 10px;
 }
 .markers-list {
   width: 100%;
@@ -73,22 +108,13 @@ button:hover {
   transition: 0.3s;
   cursor: pointer;
 }
-.search-box {
-  width: 100%;
-  margin: 20px 0 !important;
-  padding: 0 5px;
-}
-input {
-  width: 100%;
-  padding: 5px !important;
-}
 
 @media screen and (min-width:768px) {
   aside {
     width: 30%;
     height: 100%;
   }
-  #map {
+  .map-wrapper {
     width: 70%;
   }
 }

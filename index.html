@@ -7,6 +7,9 @@
 		<meta name="author" content="Guizo">
     <title>Downtown Rio Museums</title>
 
+    <!-- Load Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
     <!-- Load CSS custom file -->
     <link rel="stylesheet" href="css/style.css">
   </head>
@@ -14,9 +17,23 @@
 
     <div class="container flex-center">
 
+      <div class="map-wrapper">
+
+        <!-- Hamburger menu -->
+        <div class="menu-toggler" title="Hide Menu"><i class="fa fa-bars fa-3x" aria-hidden="true"></i></div>
+
+        <!-- Element that contains the map -->
+        <div id="map"></div>
+      </div>
+
       <!-- Side bar -->
       <aside>
         <h1>Downtown Rio Museums</h1>
+
+        <div class="media" title="GitHub repository">
+          <a href="https://github.com/guizoxxv/udacity-neighborhood-map" target="_blank"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
+        </div>
+
         <div class="search-box">
           <h2>Search</h2>
           <!-- Knockout bind <input> with function filter on keyup event -->
@@ -33,9 +50,6 @@
           </ul>
         </div>
       </aside>
-
-      <!-- Element that contains the map -->
-      <div id="map"></div>
 
     </div>
 

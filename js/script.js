@@ -1,3 +1,34 @@
+$(document).ready(function() {
+
+  // .menu-toggler click event handler
+  $(document).on('click', '.menu-toggler', function() {
+
+    // Toggle aside
+    $('aside').slideToggle();
+
+    // Update title from menu-toggler accordingly
+    if($('.menu-toggler').attr('title') === 'Hide Menu') {
+      $('.menu-toggler').attr('title', 'Show Menu');
+    } else {
+      $('.menu-toggler').attr('title', 'Hide Menu');
+    }
+
+    // Check if .map-wrapper width equal to its parent .container. As computed width is in px, I was unable to use if($('.map-wrapper').css('width' === '70%')) { ... }
+    if($('.map-wrapper').width() !== $('.container').width()) {
+
+      // Toogle .map-wrapper width = 100%
+      $('.map-wrapper').toggleClass('full-width');
+
+      // Resize Map
+      var center = map.getCenter();
+      google.maps.event.trigger(map, 'resize');
+      map.setCenter(center);
+    }
+  });
+});
+
+var map; // Important to declare - http://stackoverflow.com/questions/1470488/what-is-the-purpose-of-the-var-keyword-and-when-to-use-it-or-omit-it
+
 // Markers data array
 var markersDataArray = [
   {title: 'Museu do Amanhã', lat: -22.8939768, lng: -43.1794345, id: '56741ea6498e999035b89e4c'}, // id is the venue id on Foursquare
@@ -29,14 +60,14 @@ function googleAPIError() {
 function markerObj(data) {
   var self = this;
 
-  this.title = ko.observable(data.title);
-  this.lat = ko.observable(data.lat);
-  this.lng = ko.observable(data.lng);
-  this.id = ko.observable(data.id);
+  this.title = data.title;
+  this.lat = data.lat;
+  this.lng = data.lng;
+  this.id = data.id;
 
   // Foursquare API variables
-  this.url = ko.observable('');
   this.address = ko.observable('');
+  this.url = ko.observable('');
 
   // Instantiate Google Maps Marker object
   this.marker = new google.maps.Marker({
@@ -60,9 +91,9 @@ function markerObj(data) {
         // console.log(results);
 
         // Set desired data into variables
-    		self.url = results.url;
         // console.log(results.location.formattedAddress);
     		self.address = results.location.formattedAddress[0] + ' - ' + results.location.formattedAddress[1]; // formattedAddress[0] is street and [2] city, state
+        self.url = results.url;
       },
       error: function() { // If request fails
         alert('Fail to connect to Foursquare API.');
@@ -151,11 +182,11 @@ function viewModel() {
 
     // Loop throgh markersArray
     self.markersArray().forEach(function(data) {
-      // console.log(data.title());
-      // console.log(data.title().toLowerCase().includes(input));
+      // console.log(data.title;
+      // console.log(data.title.toLowerCase().includes(input));
 
       // Compare titles with user input
-      if(data.title().toLowerCase().includes(input) === true) {
+      if(data.title.toLowerCase().includes(input) === true) {
 
         // Add match to visibleMarkersArray
         self.visibleMarkersArray.push(data);
