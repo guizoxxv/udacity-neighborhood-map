@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Downtown Rio Museums</title>
     <meta charset="utf-8">
@@ -12,6 +13,7 @@
     <!-- Load CSS custom file -->
     <link rel="stylesheet" href="css/style.css">
   </head>
+
   <body>
 
     <div class="wrapper flex-center">
@@ -45,13 +47,13 @@
         </div>
       </aside>
 
-      </div>
+    </div>
 
-      <footer class="flex-center">
-        <p id="footnote">
-          <i class="fa fa-code" aria-hidden="true"></i> with <i class='fa fa-heart'></i> by <a href="https://guizoxxv.github.io/guizo-portfolio/" target="_blank" title="guizo portfolio">guizo</a>. View on <a id='git-a' href='https://github.com/guizoxxv/udacity-neighborhood-map' target="_blank" title='GitHub repository'>GitHub<i class='fa fa-github'></i></a>
-        </p>
-      </footer>
+    <footer class="flex-center">
+      <p id="footnote">
+        <i class="fa fa-code" aria-hidden="true"></i> with <i class='fa fa-heart'></i> by <a href="https://guizoxxv.github.io/guizo-portfolio/" target="_blank" title="guizo portfolio">guizo</a>. View on <a id='git-a' href='https://github.com/guizoxxv/udacity-neighborhood-map' target="_blank" title='GitHub repository'>GitHub<i class='fa fa-github'></i></a>
+      </p>
+    </footer>
 
     <!-- Load jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -61,6 +63,16 @@
     <script src="js/script.js"></script>
     <!-- Load Google Maps Javascript API -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2nYdSNR2q_82_LhqScoVS5o8GlGFEC9o&v=3&callback=initMap" onerror="googleAPIError()"></script> <!-- Run function on callback to initiate map and onerror in case of error -->
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-86469614-10', 'auto');
+      ga('send', 'pageview');
+    </script>
 
   </body>
 </html>
